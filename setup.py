@@ -1,5 +1,6 @@
-from setuptools import setup, find_packages
+# from setuptools import setup, find_packages
 import codecs
+from distutils.core import setup
 import os
 import tushare
 
