@@ -318,7 +318,7 @@ def get_realtime_quotes(symbols=None):
     df['code'] = syms_list
     ls = [cls for cls in df.columns if '_v' in cls]
     for txt in ls:
-        df[txt] = df[txt].map(lambda x: x[:-2])
+        df[txt] = df[txt].map(lambda x: float(x) / 100)
     return df
 
 
