@@ -28,8 +28,11 @@ class Test(unittest.TestCase):
         
     def test_get_realtime_quotesa(self):
         self.set_data()
-        print(fd.get_realtime_quotes(self.code)) 
-        
+        print(fd.get_realtime_quotes(self.code))
+
+    def test_get_realtime_future(self):
+        print(fd.get_realtime_future('IF1509').loc[0])
+
     def test_get_h_data(self):
         self.set_data()
         print(fd.get_h_data(self.code, self.start, self.end))

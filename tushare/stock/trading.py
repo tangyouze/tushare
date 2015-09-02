@@ -254,6 +254,25 @@ def get_today_all():
     return df
 
 
+def get_realtime_future(symbols):
+    if not isinstance(symbols, list):
+        symbols = [symbols]
+    symbols = map(lambda t: 'CFF_%s' % t, symbols)
+    url = ','.join(symbols)
+    txt = session.get('http://hq.sinajs.cn/list=%s' % url).text
+    lst = []
+    for l in txt.splitlines():
+        l = l.split('"')[1]
+        lst.append(l.split(','))
+    # df = pd.DataFrame(lst, columns=['a', 'b', 'c'])
+
+    cols = ['xx1', 'xx2', 'xx3', 'price', 'xx5', 'xx6', 'xx7', 'xx8', 'xx9', 'xx10', 'xx11', 'xx12', 'xx13', 'pre_close', 'xx15', 'xx16',
+            'b1_v', 'b1_p', 'b2_v', 'b2_p', 'b3_v', 'b3_p', 'b4_v', 'b4_p', 'b5_v', 'b5_p',
+            'a1_v', 'a1_p', 'a2_v', 'a2_p', 'a3_v', 'a3_p', 'a4_v', 'a4_p', 'a5_v', 'a5_p', 'date', 'time', 's']
+    df = pd.DataFrame(lst, columns=cols)
+    return df
+
+
 def get_realtime_quotes(symbols=None):
     """
         获取实时交易数据 getting real time quotes data
