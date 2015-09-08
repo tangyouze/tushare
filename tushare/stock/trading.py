@@ -337,7 +337,25 @@ def get_realtime_quotes(symbols=None):
     df['code'] = syms_list
     ls = [cls for cls in df.columns if '_v' in cls]
     for txt in ls:
-        df[txt] = df[txt].map(lambda x: float(x) / 100)
+        df[txt] = df[txt].map(lambda x: float(x))
+    df['bids'] = [[] for _ in range(len(df))]
+    df['asks'] = [[] for _ in range(len(df))]
+    for k, v in df.iterrows():
+        print('bbids', v['bids'])
+        bids = []
+        asks = []
+        for i in range(1, 6):
+            # v['bids'].append({'price': float(v['b%s_p' % i]), 'volume': float(v['b%s_v' % i])})
+            # v['asks'].append({'price': float(v['a%s_p' % i]), 'volume': float(v['a%s_v' % i])})
+            bids.append({'price': float(v['b%s_p' % i]), 'volume': float(v['b%s_v' % i])})
+            asks.append({'price': float(v['a%s_p' % i]), 'volume': float(v['a%s_v' % i])})
+
+        bids = sorted(bids, key=lambda x: -x['price'])
+        asks = sorted(asks, key=lambda x: x['price'])
+        for x in bids:
+            v['bids'].append(x)
+        for x in asks:
+            v['asks'].append(x)
     return df
 
 
