@@ -66,15 +66,12 @@ def get_hist_data(code=None, start=None, end=None,
     for _ in range(retry_count):
         time.sleep(pause)
         try:
-            request = Request(url)
-            lines = urlopen(request, timeout=10).read()
-            if len(lines) < 15:  # no data
+            js = session.get(url).json()
+            if len(str(js)) < 15:  # no data
                 return None
         except Exception as e:
             print(e)
         else:
-            js = json.loads(lines.decode('utf-8') if ct.PY3 else lines)
-            cols = []
             if (code in ct.INDEX_LABELS) & (ktype.upper() in ct.K_LABELS):
                 cols = ct.INX_DAY_PRICE_COLUMNS
             else:
