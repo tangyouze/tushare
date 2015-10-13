@@ -341,7 +341,7 @@ def get_realtime_quotes(symbols=None):
     df['bids'] = [[] for _ in range(len(df))]
     df['asks'] = [[] for _ in range(len(df))]
     for k, v in df.iterrows():
-        print('bbids', v['bids'])
+        # print('bbids', v['bids'])
         bids = []
         asks = []
         for i in range(1, 6):
