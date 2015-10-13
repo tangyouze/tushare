@@ -393,13 +393,13 @@ def get_h_data(code, start=None, end=None, autype='qfq',
     end = du.today() if end is None else end
     qs = du.get_quarts(start, end)
     qt = qs[0]
-    ct._write_head()
+    # ct._write_head()
     data = _parse_fq_data(_get_index_url(index, code, qt), index,
                           retry_count, pause)
     if len(qs) > 1:
         for d in range(1, len(qs)):
             qt = qs[d]
-            ct._write_console()
+            # ct._write_console()
             df = _parse_fq_data(_get_index_url(index, code, qt), index,
                                 retry_count, pause)
             data = data.append(df, ignore_index=True)
@@ -435,8 +435,8 @@ def get_h_data(code, start=None, end=None, autype='qfq',
             if du.is_holiday(du.today()):
                 preClose = float(rt['price'])
             else:
-                print(du.get_hour())
-                print((du.get_hour() > 9) & (du.get_hour() < 18))
+                # print(du.get_hour())
+                # print((du.get_hour() > 9) & (du.get_hour() < 18))
                 if (du.get_hour() > 9) & (du.get_hour() < 18):
                     preClose = float(rt['pre_close'])
                 else:
