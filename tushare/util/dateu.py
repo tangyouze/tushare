@@ -7,8 +7,8 @@ import pandas as pd
 def year_qua(date):
     mon = date[5:7]
     mon = int(mon)
-    return[date[0:4], _quar(mon)]
-    
+    return [date[0:4], _quar(mon)]
+
 
 def _quar(mon):
     if mon in [1, 2, 3]:
@@ -21,25 +21,27 @@ def _quar(mon):
         return '4'
     else:
         return None
- 
- 
+
+
 def today():
     day = datetime.datetime.today().date()
-    return str(day) 
+    return str(day)
 
 
 def get_year():
     year = datetime.datetime.today().year
     return year
 
+
 def get_month():
     month = datetime.datetime.today().month
     return month
 
+
 def get_hour():
     return datetime.datetime.today().hour
-    
-    
+
+
 def today_last_year():
     lasty = datetime.datetime.today().date() + datetime.timedelta(-365)
     return str(lasty)
@@ -64,28 +66,23 @@ def get_quarts(start, end):
 
 
 holiday = ['2015-01-01', '2015-01-02', '2015-02-18', '2015-02-19', '2015-02-20', '2015-02-23', '2015-02-24', '2015-04-06',
-                            '2015-05-01', '2015-06-22', '2015-09-03',  '2015-09-04', '2015-10-01', '2015-10-02', '2015-10-05', '2015-10-06', '2015-10-07']
-    
+           '2015-05-01', '2015-06-22', '2015-09-03', '2015-09-04', '2015-10-01', '2015-10-02', '2015-10-05', '2015-10-06', '2015-10-07']
+
 
 def is_holiday(date):
     if isinstance(date, str):
         date = datetime.datetime.strptime(date, '%Y-%m-%d')
-    today=int(date.strftime("%w"))
+    today = int(date.strftime("%w"))
     if today > 0 and today < 6 and date not in holiday:
         return False
     else:
         return True
-    
-    
+
+
 def last_tddate():
     today = datetime.datetime.today().date()
-    today=int(today.strftime("%w"))
+    today = int(today.strftime("%w"))
     if today == 0:
         return day_last_week(-2)
     else:
         return day_last_week(-1)
-        
-    
-
-    
-    
