@@ -5,7 +5,7 @@ __author__ = 'Jimmy Liu'
 for trading data
 """
 from tushare.stock.trading import (get_hist_data, get_tick_data,
-                                   get_today_all, get_realtime_quotes,
+                                   get_today_all, get_realtime_quotes, get_realtime_future,
                                    get_h_data, get_today_ticks,
                                    get_index, get_hists)
 
@@ -64,7 +64,6 @@ for LHB
 """
 from tushare.stock.billboard import (top_list, cap_tops, broker_tops,
                                      inst_tops, inst_detail)
-
 
 """
 for DataYes Token

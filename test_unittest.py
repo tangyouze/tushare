@@ -1,5 +1,4 @@
-'''
-UnitTest for API
+''' UnitTest for API
 @author: Jimmy
 '''
 import unittest
